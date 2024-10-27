@@ -21,9 +21,6 @@ const COLORS = [
 
 export default function CostBreakdownChart() {
   const avg_order_value = inputStore((state) => state.avg_order_value);
-  const day90_avg_order_value = inputStore(
-    (state) => state.day90_avg_order_value
-  );
   const costOfGoodsSoldPercentage = inputStore((state) => state.cogs);
   const storingAndPackingPercentage = inputStore(
     (state) => state.storage_packaging
@@ -38,15 +35,15 @@ export default function CostBreakdownChart() {
   const otherVariableCostsPercentage = inputStore((state) => state.other_cost);
   const target_margin = inputStore((state) => state.target_margin);
 
-  let var_percent =
+  const var_percent =
     costOfGoodsSoldPercentage +
     storingAndPackingPercentage +
     shippingAndFulfillmentPercentage +
     returnCostPercentage +
     creditCardAndMerchantFeePercentage +
     otherVariableCostsPercentage;
-  let contribution_percent = 100 - var_percent;
-  let cpa_target = contribution_percent - target_margin;
+  const contribution_percent = 100 - var_percent;
+  const cpa_target = contribution_percent - target_margin;
 
   const data = [
     {
@@ -129,7 +126,7 @@ export default function CostBreakdownChart() {
                 fill="#ffffff"
                 stroke="none"
                 fontSize={14}
-                formatter={(value: any) => `${value}%`}
+                formatter={(value: string) => `${value}%`}
               />
             </Pie>
           </PieChart>

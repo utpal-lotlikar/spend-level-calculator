@@ -25,28 +25,28 @@ export const CPATable = () => {
   const other_cost = inputStore((state) => state.other_cost);
   const target_margin = inputStore((state) => state.target_margin);
 
-  let var_percent =
+  const var_percent =
     cogs +
     storage_packaging +
     shipping_fulfillment +
     returns_cost +
     cc_merchant_fees +
     other_cost;
-  let var_nc_cost = avg_order_value * (var_percent / 100);
-  let var_90d_cost = day90_avg_order_value * (var_percent / 100);
+  const var_nc_cost = avg_order_value * (var_percent / 100);
+  const var_90d_cost = day90_avg_order_value * (var_percent / 100);
 
-  let contribution_percent = 100 - var_percent;
-  let contribution_nc = avg_order_value * (contribution_percent / 100);
-  let contribution_90d = day90_avg_order_value * (contribution_percent / 100);
+  const contribution_percent = 100 - var_percent;
+  const contribution_nc = avg_order_value * (contribution_percent / 100);
+  const contribution_90d = day90_avg_order_value * (contribution_percent / 100);
 
-  let cpa_target = contribution_percent - target_margin;
-  let cpa_nc = avg_order_value * (cpa_target / 100);
-  let cpa_90d = day90_avg_order_value * (cpa_target / 100);
+  const cpa_target = contribution_percent - target_margin;
+  const cpa_nc = avg_order_value * (cpa_target / 100);
+  const cpa_90d = day90_avg_order_value * (cpa_target / 100);
 
-  let breakeven_roas = 1 / (contribution_percent / 100);
-  let nc_roas = avg_order_value / cpa_nc;
-  let day90_roas = day90_avg_order_value / cpa_nc;
-  let day90_cpa_roas = avg_order_value / cpa_90d;
+  const breakeven_roas = 1 / (contribution_percent / 100);
+  const nc_roas = avg_order_value / cpa_nc;
+  const day90_roas = day90_avg_order_value / cpa_nc;
+  const day90_cpa_roas = avg_order_value / cpa_90d;
 
   return (
     <div className="flex flex-col max-w-md">

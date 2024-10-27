@@ -34,9 +34,6 @@ type MetricKeys =
 
 export default function FinancialTable() {
   const avg_order_value = inputStore((state) => state.avg_order_value);
-  const day90_avg_order_value = inputStore(
-    (state) => state.day90_avg_order_value
-  );
   const costOfGoodsSoldPercentage = inputStore((state) => state.cogs);
   const storingAndPackingPercentage = inputStore(
     (state) => state.storage_packaging
@@ -53,17 +50,17 @@ export default function FinancialTable() {
   const starting_monthly_spend = inputStore((state) => state.starting_spend);
   const monthly_increment = inputStore((state) => state.monthly_increment);
 
-  let var_percent =
+  const var_percent =
     costOfGoodsSoldPercentage +
     storingAndPackingPercentage +
     shippingAndFulfillmentPercentage +
     returnCostPercentage +
     creditCardAndMerchantFeePercentage +
     otherVariableCostsPercentage;
-  let contribution_percent = 100 - var_percent;
-  let cpa_target = contribution_percent - target_margin;
-  let cpa_nc = avg_order_value * (cpa_target / 100);
-  let nc_roas = avg_order_value / cpa_nc;
+  const contribution_percent = 100 - var_percent;
+  const cpa_target = contribution_percent - target_margin;
+  const cpa_nc = avg_order_value * (cpa_target / 100);
+  const nc_roas = avg_order_value / cpa_nc;
 
   // Function to calculate metrics for a given month
   const calculateMetrics = (monthlySpend: number) => {
